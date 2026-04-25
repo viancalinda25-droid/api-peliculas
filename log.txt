@@ -1,0 +1,9 @@
+24/4/2026, 9:22:26 p.m. - POST en /peliculas?key=12345
+24/4/2026, 9:25:08 p.m. - GET en /?key=12345
+24/4/2026, 9:25:08 p.m. - GET en /favicon.ico
+24/4/2026, 9:29:04 p.m. - POST en /peliculas?key=12345
+24/4/2026, 9:29:27 p.m. - GET en /peliculas?key=12345
+24/4/2026, 9:35:31 p.m. - POST en /peliculas?key=12345
+24/4/2026, 9:36:28 p.m. - POST en /peliculas/1?key=12345
+24/4/2026, 9:36:51 p.m. - PUT en /peliculas/1?key=12345
+24/4/2026, 9:37:27 p.m. - DELETE en /peliculas/1?key=12345
