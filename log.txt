@@ -7,3 +7,5 @@
 24/4/2026, 9:36:28 p.m. - POST en /peliculas/1?key=12345
 24/4/2026, 9:36:51 p.m. - PUT en /peliculas/1?key=12345
 24/4/2026, 9:37:27 p.m. - DELETE en /peliculas/1?key=12345
+3/5/2026, 5:58:00 p.m. - POST en /login
+3/5/2026, 6:03:46 p.m. - GET en /peliculas?key=12345

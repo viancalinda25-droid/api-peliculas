@@ -1,6 +1,7 @@
 import express from 'express';
 import fs from 'fs';
 import path from 'path';
+import jwt from 'jsonwebtoken';
 
 import { sequelize } from './db.js';
 import peliculasRoutes from './routers/peliculas.router.js';
@@ -32,8 +33,39 @@ const validarApiKey = (req, res, next) => {
     }
 };
 
-// rutas de peliculas
-app.use('/peliculas', validarApiKey, peliculasRoutes);
+// middleware para validar token
+const validarToken = (req, res, next) => {
+    const authHeader = req.headers['authorization'];
+
+    if (!authHeader) {
+        return res.status(401).send('Token requerido');
+    }
+
+    const token = authHeader.split(' ')[1];
+
+    jwt.verify(token, 'secreto123', (err, user) => {
+        if (err) {
+            return res.status(403).send('Token inválido');
+        }
+
+        next();
+    });
+};
+
+// 🔐 login (genera token)
+app.post('/login', (req, res) => {
+    const { user, password } = req.body;
+
+    if (user === 'admin' && password === '1234') {
+        const token = jwt.sign({ user }, 'secreto123', { expiresIn: '1h' });
+        res.json({ token });
+    } else {
+        res.status(401).send('Credenciales incorrectas');
+    }
+});
+
+// rutas de peliculas (protegidas)
+app.use('/peliculas', validarApiKey, validarToken, peliculasRoutes);
 
 // ruta base
 app.get('/', validarApiKey, (req, res) => {
